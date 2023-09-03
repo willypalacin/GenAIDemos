@@ -1,0 +1,27 @@
+image_path: ../assets/gcp-logo.png
+project_id: project-demo-389821
+region: us-central1
+prompt_palm_improvement:  |
+    You are a prompt engineer for image generator. Based on the information you need to tune it to create 3 perfect prompts. The prompt must always contain a subject, a description and the style and the three prompts must be diferent
+
+    input: Logo, Sun glasses
+    output: 1: Design an eye-catching logo for a sunglasses company that mixes fashion and fun.
+
+    2: Design an minimalist logo that contains sunglasses  with a dark background
+
+    3: Realistic  logo that contains sunglasses  with dark light 
+
+    input: 4k, Batmobile with traffic in Los Angeles
+    output: 1: The Batmobile stuck in Los Angeles traffic 4k realistic shot
+
+    2: A 4k image of the Batmobile surrounded by traffic in los angeles wide shot
+
+    3: Realistic high resolution image of a batMobile in Los Angeles stopped with other cars in Los angeles
+
+    input: {}, {}
+
+    1: 
+
+    2: 
+    output:
+    """
