@@ -145,3 +145,11 @@ gcloud run deploy img-gen-service \
 --region=$REGION \
 --allow-unauthenticated
 ```
+
+# Demo 4 - Customized agent - Retrieval Augented Generation & Matching Engine
+1. Create a CLoud Storage Bucket
+2. Create a folder inside the bucket named /documents
+3. Open the `ingest_to_macthing_engine.ipynb`
+4. Reemplace the variable `GCS_BUCKET_DOCS` with the name of you bucket
+5. Run `ingest_to_macthing_engine.ipynb`
+6 Copy your matching index_id and endpoint_id in the config.yaml
