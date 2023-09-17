@@ -36,8 +36,6 @@ class AppConfig:
         vertexai.init(project=self.project_id, location=self.region)
 
 
-    
-
 
 def vision_api_call(image_bytes):
     client = vision.ImageAnnotatorClient()
@@ -78,8 +76,8 @@ def add_logo(logo_path, width, height):
 
 def call_palm_generate_verbatim(description, labels, objects, prompt):
     parameters = {
-        "temperature": 0.6,
-        "max_output_tokens": 1000,
+        "temperature": 0.4,
+        "max_output_tokens": 2000,
         "top_p": 0.8,
         "top_k": 40
     }
@@ -89,7 +87,7 @@ def call_palm_generate_verbatim(description, labels, objects, prompt):
         **parameters
     )
     # Output the extracted sentences
-    st.write("——————PALM——————")
+    st.markdown("### ——————PALM——————")
     st.write(response.text)
 
 def img_captioning_payload_qa(base64_image, prompt):
@@ -158,27 +156,21 @@ def main(config):
         opencv_image = cv2.imdecode(file_bytes, 1)
         st.image(opencv_image, channels="BGR")
         base64_image = bytes_to_base64(opencv_image)
-        st.write("——————VISION API ATTR——————")
+        #st.write("——————VISION API ATTR——————")
 
         labels, objects = vision_api_call(uploaded_file.getvalue())
-        st.write(labels)
-        st.write(objects)
+        #st.write(labels)
+        #st.write(objects)
         url_img_cpt = config.url_img_cpt
         response_en = call_image_apis(url_img_cpt, img_captioning_payload(base64_image, "en"))
         preds = []
         if response_en is not None: 
-            st.write("——————IMAGE CAPTIONING——————")
+            #st.write("——————IMAGE CAPTIONING——————")
 
             for pred in response_en['predictions']:
                 preds.append(pred)
-                st.write(pred)
+                #st.write(pred)
 
-        response_es = call_image_apis(url_img_cpt, img_captioning_payload(base64_image, "es"))
-        preds = []
-        if response_es is not None: 
-            for pred in response_es['predictions']:
-                preds.append(pred)
-                st.write(pred)
         
         response_qa = call_image_apis(url_img_cpt, img_captioning_payload_qa(base64_image, 'type of trousers'))
         if response_qa is not None: 
@@ -190,13 +182,12 @@ def main(config):
         if response_qa is not None: 
             for pred in response_qa['predictions']:
                 preds.append("type of upper part: " + pred)
-  #              st.write(pred)
+        
         call_palm_generate_verbatim(str(preds), str(labels), str(objects), config.prompt)
   
 
 if __name__ == '__main__':
     config = AppConfig('config.yaml')
     main(config)
- #   st.text("Made by gpalacin@")
 
 

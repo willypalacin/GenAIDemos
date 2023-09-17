@@ -1,4 +1,4 @@
-image_path: ./assets/pi.jpg
+image_path: ./assets/gcp-logo.png
 project_id: project-demo-389821
 region: us-central1
 prompt_palm_improvement:  |
@@ -6,4 +6,6 @@ prompt_palm_improvement:  |
        You will receive an image of a model wearing clothes and a set of attriburtes. You need to describe with as much precission as you can the outfit exaplaining each one of the parts (tshirt, trousers, and if there is an accessory).  Answer in English and Spanish        description: {}
         attributes: {} , {}
 
+    English: 
+    Spanish:
     """

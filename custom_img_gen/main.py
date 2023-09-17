@@ -145,10 +145,10 @@ def main(config):
     st.title('Prompt Coach')
 
 
-    st.markdown('## Generación de images custom')
+    st.markdown('## Custom image generator')
     col1, col2, col3 = st.columns(3)
     with col1:
-        title = st.text_input('Descripcion del contenido a mostrar', 'Woman with barbie dress')
+        title = st.text_input('Content description', 'Woman with barbie dress')
 
     with col2:
         options = st.multiselect(
@@ -162,7 +162,7 @@ def main(config):
 
     if button:
         st.session_state['button_clicked'] = True
-        st.markdown('#### Sugerencias de prompts. Elige una')
+        st.markdown('#### Prompt suggestions. Pick one')
         st.session_state['sentences'] = get_prompts(title, options[0], config.prompt)
 
         # Note: you may want to handle cases when sentences list is empty
