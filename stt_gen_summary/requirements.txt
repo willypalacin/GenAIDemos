@@ -1,0 +1,6 @@
+streamlit
+google-cloud-aiplatform
+Pillow
+opencv-python
+google-cloud-speech
+pyyaml
