@@ -1,16 +1,18 @@
 # GenAI Labs
 `by gpalacin@`
 
-This repo comprises a collection of individual labs focusing on generative AI within the Google Cloud Platform.
+This repo contains a collection of individual labs focusing on generative AI within the Google Cloud Platform.
 
 These rapid prototypes highlight various generative AI functionalities offered by Vertex AI and demonstrate their real-world applications.
 
 The objective is to facilitate the easy deployment of this suite of demos on Cloud Run, using a straightforward front-end (streamlit) that, under the hood, invokes the Vertex AI APIs.
 
+At the moment there are the following demos: 
+
 1. Prompt Coach
 2. Fashion image descriptor
 3. Chat interaction with podcast
-4. Retrieval Aumented Generation + Langchain
+4. Retrieval Aumented Generation (RAG) + Langchain
 
 > Note: Some of these demo content is in Spanish.
 
@@ -111,11 +113,6 @@ gcloud run deploy img-gen-service \
 --allow-unauthenticated
 ```
 
-<p align="center">
-  <img src="./imgs/mm1.gif" alt="Image Description" />
-</p>
-
-![Architecture](./imgs/arch1.png)
 
 # Demo 3 - Chat intercation with podcast
 
@@ -124,3 +121,27 @@ The goal of this demo is to be able to do interact with audio files, using a cha
 To accomplish that task, the following services will be used: 
 1. Speech to text
 2. PaLM 2 (chat bison)
+
+Build and push the image to artifact registry
+
+> Note: Update the project ID in the config.yaml file before running the comands below
+
+<p align="center">
+  <img src="./imgs/mm3.gif" alt="Image Description" />
+</p>
+
+![Architecture](./imgs/arch3.png)
+
+```
+cd stt_gen_summary
+gcloud builds submit -t $REGION-docker.pkg.dev/$PROJECT_ID/gen-ai-imgs/stt-summary .
+```
+
+Deploy to Cloud Run
+
+```
+gcloud run deploy img-gen-service \
+--image="${REGION}-docker.pkg.dev/${PROJECT_ID}/gen-ai-imgs/stt-summary" \
+--region=$REGION \
+--allow-unauthenticated
+```
