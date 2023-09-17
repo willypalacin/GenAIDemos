@@ -1,0 +1,6 @@
+google-cloud-aiplatform
+streamlit
+Pillow
+numpy
+pyyaml
+requests

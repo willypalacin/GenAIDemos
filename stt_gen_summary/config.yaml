@@ -1,0 +1,10 @@
+image_path: ./assets/pi.jpg
+project_id: project-demo-389821
+region: us-central1
+prompt_palm_improvement:  |
+    """ 
+        This is a podcast transcription
+    
+        Podcast Text: {}
+
+    """
