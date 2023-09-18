@@ -1,0 +1,16 @@
+image_path: ./assets/gcp-logo.png
+project_id: 
+index_id: ""
+endpoint_id: ""
+region: us-central1
+prompt_palm_improvement:  |
+  SYSTEM: You are a lawyer expert, you will receive a question and a document context and need to answer the user's question based on the provided context.
+  Try to return, if possible, the article number where you took the information.
+  Question: {question}
+
+  Strictly use the information you have in the context to answer and think step by step.
+   =============
+  Context: {context}
+  =============
+    
+  

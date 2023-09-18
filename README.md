@@ -147,9 +147,33 @@ gcloud run deploy img-gen-service \
 ```
 
 # Demo 4 - Customized agent - Retrieval Augented Generation & Matching Engine
+
+The purpose of this demo is to create a Q&A system based on unestructured information stored in a Cloud storage bucket using Langchain, PaLM and Google Matching Engine as a Vector DB.
+
+<p align="center">
+  <img src="./imgs/mm4.gif" alt="Image Description" />
+</p>
+
+![Architecture](./imgs/arch4.png)
+
+
 1. Create a CLoud Storage Bucket
 2. Create a folder inside the bucket named /documents
 3. Open the `ingest_to_macthing_engine.ipynb`
 4. Reemplace the variable `GCS_BUCKET_DOCS` with the name of you bucket
 5. Run `ingest_to_macthing_engine.ipynb`
-6 Copy your matching index_id and endpoint_id in the config.yaml
+6. Copy your matching index_id and endpoint_id in the config.yaml
+
+```
+cd rag_langchain
+gcloud builds submit -t $REGION-docker.pkg.dev/$PROJECT_ID/gen-ai-imgs/rag_langchain .
+```
+
+Deploy to Cloud Run
+
+```
+gcloud run deploy img-gen-service \
+--image="${REGION}-docker.pkg.dev/${PROJECT_ID}/gen-ai-imgs/rag-langchain" \
+--region=$REGION \
+--allow-unauthenticated
+```

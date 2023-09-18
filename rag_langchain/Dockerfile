@@ -12,9 +12,8 @@ RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cl
     rm google-cloud-sdk-446.0.1-linux-x86_64.tar.gz
 
 ENV PATH="/opt/google-cloud-sdk/bin:${PATH}"
+
 RUN pip install -r requirements.txt
-WORKDIR ./src
 
 
-
-CMD ["streamlit", "run", "main.py", "--server.port", "8080"]
+CMD ["streamlit", "run", "src/main.py", "--server.port", "8080"]
